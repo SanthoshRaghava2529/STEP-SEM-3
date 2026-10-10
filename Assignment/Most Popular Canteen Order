@@ -1,0 +1,44 @@
+```java
+import java.util.HashMap;
+import java.util.Map;
+
+public class Main {
+
+    public static Object[] mostPopular(String[] orders) {
+        Map<String, Integer> count = new HashMap<>();
+
+        for (String item : orders) {
+            count.put(item, count.getOrDefault(item, 0) + 1);
+        }
+
+        String bestItem = orders[0];
+        int bestCount = count.get(bestItem);
+
+        for (String item : orders) {
+            int currentCount = count.get(item);
+
+            if (currentCount > bestCount) {
+                bestItem = item;
+                bestCount = currentCount;
+            }
+        }
+
+        return new Object[]{bestItem, bestCount};
+    }
+
+    public static void main(String[] args) {
+        String[] orders1 = {
+            "dosa", "idli", "vada", "dosa",
+            "idli", "dosa", "tea"
+        };
+
+        String[] orders2 = {"tea", "coffee", "coffee", "tea"};
+
+        Object[] result1 = mostPopular(orders1);
+        Object[] result2 = mostPopular(orders2);
+
+        System.out.println("(" + result1[0] + ", " + result1[1] + ")");
+        System.out.println("(" + result2[0] + ", " + result2[1] + ")");
+    }
+}
+```
