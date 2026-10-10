@@ -1,0 +1,38 @@
+public class Main {
+
+    public static int linearSearch(int[] arr, int target) {
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == target) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public static int binarySearch(int[] arr, int target) {
+        int low = 0;
+        int high = arr.length - 1;
+
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+
+            if (arr[mid] == target) {
+                return mid;
+            } else if (arr[mid] < target) {
+                low = mid + 1;
+            } else {
+                high = mid - 1;
+            }
+        }
+
+        return -1;
+    }
+
+    public static void main(String[] args) {
+        int[] unsorted = {7, 2, 9, 4, 1};
+        int[] sorted = {1, 2, 4, 7, 9};
+
+        System.out.println(linearSearch(unsorted, 4));
+        System.out.println(binarySearch(sorted, 4));
+    }
+}
